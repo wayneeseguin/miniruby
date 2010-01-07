@@ -1,0 +1,20 @@
+Sat Dec  5 18:52:56 2009  Yuki Sonoda (Yugui)  <yugui@yugui.jp>
+
+	* string.c (rb_str_justify): CVE-2009-4124.
+	  Fixes a bug reported by
+	  Emmanouel Kellinis <Emmanouel.Kellinis AT kpmg.co.uk>, KPMG London;
+	  Patch by nobu.
+
+For ChangeLog entries see the mainline ruby
+
+Local variables:
+add-log-time-format: (lambda ()
+  (let* ((time (current-time))
+	 (system-time-locale "C")
+	 (diff (+ (cadr time) 32400))
+	 (lo (% diff 65536))
+	 (hi (+ (car time) (/ diff 65536))))
+  (format-time-string "%a %b %e %H:%M:%S %Y" (list hi lo) t)))
+indent-tabs-mode: t
+tab-width: 8
+end:
